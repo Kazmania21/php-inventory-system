@@ -1,0 +1,18 @@
+{
+    "name": "kazma/inventory",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Kazma\\Inventory\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kazmania21",
+            "email": "91277965+Kazmania21@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

@@ -40,6 +40,6 @@ jobs:
 
           echo "Deploying to /var/www/html"
           sudo systemctl restart nginx
-          sudo cp . /var/www/html/inventory/
+          sudo cp -r . /var/www/html/inventory/
 
           echo "✅ Deployment completed successfully!"

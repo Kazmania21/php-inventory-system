@@ -25,10 +25,10 @@
     <div class="container mt-5">
       <h2 class="mb-4">Inventory Table</h2>
 
-      <button class="btn btn-success mb-3" href="/add">
+      <a class="btn btn-success mb-3" href="/add">
         <i class="fa-solid fa-plus"></i>
         Add Item
-      </button>
+      </a>
 
       <table class="table table-striped table-bordered table-hover">
         <thead class="table-dark">
@@ -38,37 +38,28 @@
             <th>Category</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Apple MacBook Pro</td>
-            <td>Laptops</td>
-            <td>5</td>
-            <td>$1,699</td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Dell UltraSharp Monitor</td>
-            <td>Monitors</td>
-            <td>12</td>
-            <td>$329</td>
-          </tr>
-
-          <tr>
-            <td>3</td>
-            <td>Logitech MX Master 3</td>
-            <td>Accessories</td>
-            <td>20</td>
-            <td>$99</td>
-          </tr>
+          <?php foreach ($inventoryItems as $index => $item): ?>
+            <tr id="row-<?= $item['Id'] ?>">
+              <td><?= $item['Id'] ?></td>
+              <td><?= htmlspecialchars($item['Name']) ?></td>
+              <td><?= htmlspecialchars($item['CategoryName']) ?></td>
+              <td><?= $item['Quantity'] ?></td>
+              <td>$<?= number_format($item['Price'], 2) ?></td>
+              <td>
+                <button class="btn btn-danger" onclick="deleteItem(<?= $item['Id'] ?>)">Delete</button>
+              </td>
+            </tr>
+          <?php endforeach; ?>
         </tbody>
       </table>
     </div>
 
+    <script src="../assets/js/delete.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

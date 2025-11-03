@@ -22,17 +22,28 @@ class DatabaseConnector {
     public function connect() {
         try {
             // $this->$conn = new PDO("sqlsrv:Server=$this->serverName;Database=$this->database", $this->username, $this->password);
-            $conn = new PDO($this->connectionString);
+            $this->conn = new PDO($this->connectionString);
         }
         catch (PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
     }
 
-    public function executeQuery($query) {
-        $statment = $this->$conn->prepare($query);
-        $statment->execute();
-        return $statement->fetchall(PDO::FETCH_ASSOC);
+    public function executeQuery($query, $params) {
+        error_log($query);
+        $statement = $this->conn->prepare($query);
+        $success = $statement->execute($params);
+
+        if ($statement->columnCount() > 0) {
+            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            error_log(json_encode($results));
+            return $results;
+        }
+
+        return [
+            "success" => $success,
+            "rowsAffected" => $statement->rowCount()
+        ];
     }
 }
 

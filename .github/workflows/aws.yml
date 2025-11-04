@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  migrate:
+  Migrate:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
           -url="${{ secrets.DB_URL }}" \
           -user="${{ secrets.DB_USER }}" \
           -password="${{ secrets.DB_PASS }}" \
-          -locations="filesystem:sql/migrations"
+          -locations="filesystem:database/migrations"
 
 
   deploy:

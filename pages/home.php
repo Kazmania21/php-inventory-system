@@ -43,13 +43,13 @@
         </thead>
 
         <tbody>
-          <?php foreach ($inventoryItems as $index => $item): ?>
+          <?php foreach ($inventoryItems->i as $index => $item): ?>
             <tr id="row-<?= $item['Id'] ?>">
               <td><?= $item['Id'] ?></td>
               <td><?= htmlspecialchars($item['Name']) ?></td>
-              <td><?= htmlspecialchars($item['CategoryName']) ?></td>
+              <td><?= htmlspecialchars($item->c['CategoryName']) ?></td>
               <td><?= $item['Quantity'] ?></td>
-              <td>$<?= number_format($item['Price'], 2) ?></td>
+              <td>$<?= number_format((float) $item['Price'], 2) ?></td>
               <td>
                 <button class="btn btn-danger" onclick="deleteItem(<?= $item['Id'] ?>)">Delete</button>
               </td>

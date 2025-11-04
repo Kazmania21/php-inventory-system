@@ -35,8 +35,10 @@ class DatabaseConnector {
         $success = $statement->execute($params);
 
         if ($statement->columnCount() > 0) {
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            //$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+            $results = $statement->fetchColumn();
             error_log(json_encode($results));
+            //error_log($results);
             return $results;
         }
 

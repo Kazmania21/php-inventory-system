@@ -9,19 +9,25 @@ permissions:
   contents: read
 
 jobs:
-  flyway:
+  migrate:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
 
-    - name: Run Flyway Migrations
-      uses: flyway/flyway-action@v2
-      with:
-        url: jdbc:sqlserver://${{ secrets.DB_HOST }}:1433;databaseName=${{ secrets.DB_NAME }}
-        user: ${{ secrets.DB_USER }}
-        password: ${{ secrets.DB_PASS }}
-        locations: filesystem:sql/migrations
+    - name: Setup Flyway CLI
+      run: |
+        wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/11.15.0/flyway-commandline-11.15.0-linux-x64.tar.gz \
+          | tar -xvz
+        sudo ln -s `pwd`/flyway-11.15.0/flyway /usr/local/bin/flyway
+
+    - name: Run Flyway migrate
+      run: |
+        flyway migrate \
+          -url="${{ secrets.DB_URL }}" \
+          -user="${{ secrets.DB_USER }}" \
+          -password="${{ secrets.DB_PASS }}" \
+          -locations="filesystem:sql/migrations"
+
 
   deploy:
     name: Deploy

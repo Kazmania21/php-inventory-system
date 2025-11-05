@@ -26,7 +26,8 @@ jobs:
           -url="${{ secrets.DB_URL }};encrypt=true;trustServerCertificate=true" \
           -user="${{ secrets.DB_USER }}" \
           -password="${{ secrets.DB_PASS }}" \
-          -locations="filesystem:database/migrations"
+          -locations="filesystem:database/migrations" \
+          -baselineOnMigrate=true
 
 
   deploy:

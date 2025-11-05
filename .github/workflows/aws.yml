@@ -23,7 +23,7 @@ jobs:
     - name: Run Flyway migrate
       run: |
         flyway migrate \
-          -url="${{ secrets.DB_URL }}" \
+          -url="${{ secrets.DB_URL }};encrypt=true;trustServerCertificate=true" \
           -user="${{ secrets.DB_USER }}" \
           -password="${{ secrets.DB_PASS }}" \
           -locations="filesystem:database/migrations"

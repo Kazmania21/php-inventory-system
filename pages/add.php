@@ -36,7 +36,7 @@
             <select name="categoryId" class="form-control" required>
                 <option value="">-- Select a Category --</option>
 
-                <?php foreach ($itemCategories as $category): ?>
+                <?php foreach ($itemCategories->c as $index => $category): ?>
                     <option value="<?= htmlspecialchars($category['Id']) ?>">
                         <?= htmlspecialchars($category['Name']) ?>
                     </option>

@@ -62,14 +62,17 @@ switch ($uri) {
         break;
 
     case 'add':
-        $itemCategoriesQuery = "EXEC usp_SelectDynamicJson @TableName=:table, @Json=:json";
+        $itemCategoriesXml = new SimpleXMLElement('<Xml/>');
+        $itemCategoriesXml->addAttribute('mainAlias', 'c');
+        $itemCategoriesQuery = "EXEC usp_SelectDynamicXml @TableName=:table, @Xml=:xml";
         $itemCategories = $databaseConnector->executeQuery(
             $itemCategoriesQuery,
             [
                 'table' => 'ItemCategories',
-                'json' => json_encode([])
+                'xml' => $itemCategoriesXml->asXML()
             ]
         );
+        $itemCategories = new SimpleXMLElement($itemCategories);
         extract(['title' => 'Add Inventory Item', 'itemCategories' => $itemCategories]);
         include __DIR__ . '/pages/add.php';
         break;

@@ -41,7 +41,7 @@ switch ($uri) {
 
         $inventoryItems = $crudQueryExecutor->read($inventoryItemsXml);
 
-        $data = ['title' => 'inventory', 'inventoryItems' => $inventoryItems];
+        $data = ['title' => 'Inventory', 'inventoryItems' => $inventoryItems];
         $pageRouter->route('home.php', $data); 
 
         break;

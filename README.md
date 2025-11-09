@@ -69,6 +69,7 @@ This project follows a modular and scalable architecture with clear separation o
 ├── database/stored_procedures # Scripts to create or alter stored procedures
 ├── forms/ # Input validation forms for different features
 ├── pages/ # PHP files for constructing html pages
+├── services/ # Services like reusable routers/controllers and specialized query executors
 ├── composer.json # Project dependencies and scripts
 ├── db.php # Class that connects to SQL Server and executes queries
 ├── index.php # Contains routes connecting the view and model
@@ -79,7 +80,7 @@ This project follows a modular and scalable architecture with clear separation o
 
 1. Create or update the database tables and stored procedures in `database/migrations`.
 2. Write validation logic in a new or existing file in `forms/`.
-3. Add new business/data logic to that same file in `forms/` (will make services folder for this instead).
+3. Add new business/data logic in `services/`
 4. Define new routes or extend existing ones in `index.php`.
 5. Add new pages or update existing ones in `pages/`.
 5. Add new frontend scripts or styling in `assets/`.

@@ -1,7 +1,7 @@
 function deleteItem(id) {
     if (!confirm('Are you sure?')) return;
 
-    fetch('forms/delete.php', {
+    fetch('api/inventory', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: id })

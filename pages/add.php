@@ -25,7 +25,7 @@
     <div class="container mt-5">
       <h2 class="mb-4">Inventory Table</h2>
 
-      <form action="forms/add.php" method="POST" class="p-4 border rounded">
+      <form action="api/inventory" method="POST" class="p-4 border rounded">
         <div class="mb-3">
           <label class="form-label">Item Name</label>
           <input type="text" name="itemName" class="form-control" required>
